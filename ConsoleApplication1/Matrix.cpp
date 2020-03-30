@@ -83,9 +83,74 @@ void Matrix::FillRandom(double a, double b)
 	}
 }
 
-//Matrix Matrix::operator = (const Matrix& right) {}
-//Matrix Matrix::operator == (const Matrix& right) {}
-//Matrix Matrix::operator != (const Matrix& right) {}
+void Matrix::Clear()
+{
+	for (size_t i = 0; i < rows; ++i)
+	{
+		delete[] matrix[i];
+	}
+	delete[] matrix;
+	cols = rows = 0;
+}
+
+void Matrix::Row_mult(size_t row, double n)
+{
+	for (int i(0); i < cols; ++i)
+	{
+		matrix[row][i] *= n;
+	}
+}
+
+/* void Matrix::Row_add(size_t row1, size_t row2, double k = 1)
+{
+	if (k == 0)
+	{
+		return;
+	}
+	for (int i(0); i < cols; ++i)
+	{
+		matrix[row1][i] += matrix[row2][i] * k;
+	}
+}*/
+
+void Matrix::Row_change(size_t row1, size_t row2)
+{
+	for (int i(0); i < cols; ++i)
+	{
+		swap(matrix[row1][i], matrix[row2][i]);
+	}
+}
+
+//Matrix& Matrix::operator = (const Matrix& right) 
+//{
+//	Clear();
+//
+//}
+
+bool Matrix::operator == (const Matrix& right) 
+{
+	if (rows != right.rows || cols != right.cols)
+	{
+		return false;
+	}
+
+	for (int i(0); i < cols; ++i)
+	{
+		for (int j(0); j < rows; ++j)
+		{
+			if (matrix[i][j] != right.matrix[i][j])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool Matrix::operator != (const Matrix& right) 
+{
+	return !(*this == right);
+}
 
 Matrix Matrix::operator+(const Matrix& right)
 {

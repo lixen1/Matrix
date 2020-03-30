@@ -28,7 +28,7 @@ int main()
 	cout << endl;
 	m3.Print();
 
-	/*cout << endl;
+	cout << endl;
 	m1 = m2 + m3;
 	m1.Print();
 
@@ -42,7 +42,7 @@ int main()
 
 	cout << endl;
 	m1 = 0.5 * m2;
-	m1.Print();*/
+	m1.Print();
 
 	cout << endl;
 	m1 = m2 * m3;
